@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Nez/" />
+  <Folder Name="/Nez/Nez.Portable/">
+    <Project Path="Nez/Nez.Portable/Nez.MG38.csproj" />
+  </Folder>
+  <Project Path="HellfireGame/HellfireGame.csproj" />
+</Solution>

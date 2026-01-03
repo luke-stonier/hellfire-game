@@ -1,2 +1,2 @@
-﻿using var game = new HellfireGame.Game1();
+﻿using var game = new HellfireGame.Game();
 game.Run();
