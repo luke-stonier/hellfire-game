@@ -15,6 +15,6 @@ public class TestScene : Scene
 
         var entity = CreateEntity("hello");
         entity.Transform.Position = new Vector2(640, 360);
-        entity.AddComponent(new SpriteRenderer(new Sprite(new Texture2D())))
+        // entity.AddComponent(new SpriteRenderer(new Sprite(new Texture2D())))
     }
 }
