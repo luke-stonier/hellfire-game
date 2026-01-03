@@ -1,0 +1,15 @@
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Build outputs
+bin/
+obj/
+
+# MonoGame content build outputs (keep sources, ignore intermediates)
+**/Content/bin/
+**/Content/obj/
+
+# Logs
+*.log
