@@ -1,15 +1,18 @@
+#----------------------------- Global Properties -----------------------------#
 
-#----------------------------- Global Properties ----------------------------#
-
-/outputDir:bin/$(Platform)
-/intermediateDir:obj/$(Platform)
+/outputDir:.
+/intermediateDir:obj/Content
 /platform:DesktopGL
-/config:
 /profile:Reach
 /compress:False
 
 #-------------------------------- References --------------------------------#
 
-
 #---------------------------------- Content ---------------------------------#
 
+#begin ../../Assets/Character/character-prototype.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyEnabled=False
+/build:../../Assets/Character/character-prototype.png
+#end ../../Assets/Character/character-prototype.png

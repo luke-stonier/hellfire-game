@@ -13,8 +13,9 @@ public class TestScene : Scene
         base.Initialize();
         ClearColor = Color.Black;
 
-        var entity = CreateEntity("hello");
+        var entity = CreateEntity("character-prototype");
         entity.Transform.Position = new Vector2(640, 360);
-        // entity.AddComponent(new SpriteRenderer(new Sprite(new Texture2D())))
+        var texture = Content.Load<Texture2D>("Assets/Character/character-prototype");
+        entity.AddComponent(new SpriteRenderer(texture));
     }
 }

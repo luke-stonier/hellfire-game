@@ -29,4 +29,13 @@
   <ItemGroup>
     <ProjectReference Include="..\Nez\Nez.Portable\Nez.MG38.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bin\**\*.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Content\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
+  </ItemGroup>
+  <Target Name="BuildContent" BeforeTargets="Build">
+    <Exec Command="node ../Scripts/build-content.mjs" />
+  </Target>
 </Project>
