@@ -1,9 +1,9 @@
-using Nez;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez.Sprites;
 using Nez.Textures;
-using Nez.UI;
+using Scene = Nez.Scene;
 
 namespace HellfireGame.Scenes;
 
@@ -17,14 +17,23 @@ public class TestScene : Scene
         var entity = CreateEntity("character-prototype");
         entity.Transform.Position = new Vector2(640, 360);
         entity.Transform.Scale = new Vector2(2f);
-        
-        var texture = Content.Load<Texture2D>("Assets/Character/character-prototype");
-        var frames = Sprite.SpritesFromAtlas(texture, 64,64, 0, 12);
-        var idleAnim = new SpriteAnimation(frames.ToArray(), 12);
 
-        // Add animator + play
+        var allFrames = new List<Sprite>();
+        var animations = new List<string> {
+            "Assets/Character/character-prototype/idle",
+            "Assets/Character/character-prototype/run",
+            "Assets/Character/character-prototype/walk",
+        };
+
+        animations.ForEach((string animation) =>
+        {
+            var idleTexture = Content.Load<Texture2D>(animation);
+            allFrames.AddRange(Sprite.SpritesFromAtlas(idleTexture, 64, 64, 0, 12 * 8));
+        });
+
+        var animation = new SpriteAnimation(allFrames.ToArray(), 8);
         var animator = entity.AddComponent(new SpriteAnimator());
-        animator.AddAnimation("idle", idleAnim);
+        animator.AddAnimation("idle", animation);
         animator.Play("idle");
     }
 }

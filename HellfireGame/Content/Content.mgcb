@@ -10,9 +10,23 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../Assets/Character/character-prototype.png
+#begin ../../Assets/Character/character-prototype/idle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyEnabled=False
-/build:../../Assets/Character/character-prototype.png
-#end ../../Assets/Character/character-prototype.png
+/build:../../Assets/Character/character-prototype/idle.png
+#end ../../Assets/Character/character-prototype/idle.png
+
+#begin ../../Assets/Character/character-prototype/run.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyEnabled=False
+/build:../../Assets/Character/character-prototype/run.png
+#end ../../Assets/Character/character-prototype/run.png
+
+#begin ../../Assets/Character/character-prototype/walk.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyEnabled=False
+/build:../../Assets/Character/character-prototype/walk.png
+#end ../../Assets/Character/character-prototype/walk.png
