@@ -1,0 +1,8 @@
+﻿{
+  "name": "content-builder",
+  "private": true,
+  "scripts": {
+    "init": "dotnet tool install -g dotnet-mgcb",
+    "build-content": "node ./build-content.mjs"
+  }
+}
