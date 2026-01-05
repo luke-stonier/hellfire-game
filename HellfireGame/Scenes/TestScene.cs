@@ -31,7 +31,7 @@ public class TestScene : Scene
             allFrames.AddRange(Sprite.SpritesFromAtlas(idleTexture, 64, 64, 0, 12 * 8));
         });
 
-        var animation = new SpriteAnimation(allFrames.ToArray(), 8);
+        var animation = new SpriteAnimation(allFrames.ToArray(), 12);
         var animator = entity.AddComponent(new SpriteAnimator());
         animator.AddAnimation("idle", animation);
         animator.Play("idle");

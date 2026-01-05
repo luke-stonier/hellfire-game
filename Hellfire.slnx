@@ -1,5 +1,11 @@
 <Solution>
   <Folder Name="/Nez/" />
+  <Folder Name="/Nez/Nez.ImGui/">
+    <Project Path="Nez/Nez.ImGui/Nez.MG38.ImGui.csproj" />
+  </Folder>
+  <Folder Name="/Nez/Nez.Persistence/">
+    <Project Path="Nez/Nez.Persistence/Nez.MG38.Persistence.csproj" />
+  </Folder>
   <Folder Name="/Nez/Nez.Portable/">
     <Project Path="Nez/Nez.Portable/Nez.MG38.csproj" />
   </Folder>

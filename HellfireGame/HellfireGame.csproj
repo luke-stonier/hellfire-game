@@ -29,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nez\Nez.Portable\Nez.MG38.csproj" />
+      <ProjectReference Include="..\Nez\Nez.ImGui\Nez.MG38.ImGui.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bin\**\*.xnb">
