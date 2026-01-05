@@ -39,7 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Code\Components\" />
-    <Folder Include="Code\Entites\" />
   </ItemGroup>
   <Target Name="BuildContent" BeforeTargets="Build">
     <Exec Command="node ../Scripts/build-content.mjs" />

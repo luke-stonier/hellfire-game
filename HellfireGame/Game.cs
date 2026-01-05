@@ -1,4 +1,5 @@
 ﻿using HellfireGame.Scenes;
+using Microsoft.Xna.Framework;
 using Nez;
 using Nez.ImGuiTools;
 
@@ -14,11 +15,13 @@ public class Game : Core
     protected override void Initialize()
     {
         base.Initialize();
-        //Window.Position = new Point(-1450, 320);
+        Window.Position = new Point(-1450, 320);
         
         var imGuiManager = new ImGuiManager();
-        Core.RegisterGlobalManager( imGuiManager );
-        
+        imGuiManager.ShowSeperateGameWindow = false;
+        imGuiManager.ShowCoreWindow = false;
+        RegisterGlobalManager( imGuiManager );
+        PauseOnFocusLost = false;
         Scene = new TestScene();
     }
 }
