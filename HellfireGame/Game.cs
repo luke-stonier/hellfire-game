@@ -1,5 +1,5 @@
 ﻿using HellfireGame.Scenes;
-//using MonoGameReload;
+using Microsoft.Xna.Framework;
 using Nez;
 
 namespace HellfireGame;
@@ -8,14 +8,6 @@ public class Game : Core
 {
     public Game() : base(1280, 720, false, "Hellfire")
     {
-        // hot reload
-        /*Reloader.Initialize(
-            Content,
-            GraphicsDevice,
-            Microsoft.Xna.Framework.Content.Pipeline.TargetPlatform.DesktopGL
-        );*/
-        // end hot reload
-        
         IsMouseVisible = true;
         // var imGuiManager = new ImGuiManager();
         // Core.RegisterGlobalManager( imGuiManager );
@@ -24,6 +16,7 @@ public class Game : Core
     protected override void Initialize()
     {
         base.Initialize();
+        Window.Position = new Point(-1450, 320);
         Scene = new TestScene();
     }
 }
