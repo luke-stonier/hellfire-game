@@ -21,6 +21,8 @@ const mgcbPath = path.join(contentDir, "Content.mgcb");
 const outputDir = "."; // = HellfireGame/Content
 const intermediateDir = "obj/Content";
 
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 // recursively find files
 function walk(dir) {
     const out = [];
@@ -78,3 +80,5 @@ fs.mkdirSync(contentDir, { recursive: true });
 fs.mkdirSync(path.join(contentDir, ...intermediateDir.split("/")), { recursive: true });
 
 execSync(`mgcb "${mgcbPath}" /rebuild`, { stdio: "inherit" });
+
+await sleep(2000);
