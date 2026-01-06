@@ -1,18 +1,19 @@
 using System;
+using Nez.Sprites;
 using Nez.Textures;
 
 namespace HellfireGame.Code.Misc;
 
 public class IsometricAnimationSet
 {
-    private Sprite[] _north;
-    private Sprite[] _northEast;
-    private Sprite[] _east;
-    private Sprite[] _southEast;
-    private Sprite[] _south;
-    private Sprite[] _southWest;
-    private Sprite[] _west;
-    private Sprite[] _northWest;
+    private SpriteAnimation _north;
+    private SpriteAnimation _northEast;
+    private SpriteAnimation _east;
+    private SpriteAnimation _southEast;
+    private SpriteAnimation _south;
+    private SpriteAnimation _southWest;
+    private SpriteAnimation _west;
+    private SpriteAnimation _northWest;
     
     private float _movementSpeed;
     private int _framesPerSecond;
@@ -26,7 +27,7 @@ public class IsometricAnimationSet
         _framesPerSecond = framesPerSecond;
     }
 
-    public Sprite[] GetAnimation(IsometricDirection direction)
+    public SpriteAnimation GetAnimation(IsometricDirection direction)
     {
         switch (direction)
         {
@@ -45,16 +46,17 @@ public class IsometricAnimationSet
 
     public void SetAnimation(IsometricDirection direction, Sprite[] sprites)
     {
+        var animation = new SpriteAnimation(sprites, FramesPerSecond);
         switch (direction)
         {
-            case IsometricDirection.North: _north = sprites; break;
-            case IsometricDirection.NorthEast: _northEast = sprites; break;
-            case IsometricDirection.East: _east = sprites; break;
-            case IsometricDirection.SouthEast: _southEast = sprites; break;
-            case IsometricDirection.South: _south =  sprites; break;
-            case IsometricDirection.SouthWest: _southWest = sprites; break;
-            case IsometricDirection.West: _west = sprites; break;
-            case IsometricDirection.NorthWest: _northWest = sprites; break;
+            case IsometricDirection.North: _north = animation; break;
+            case IsometricDirection.NorthEast: _northEast = animation; break;
+            case IsometricDirection.East: _east = animation; break;
+            case IsometricDirection.SouthEast: _southEast = animation; break;
+            case IsometricDirection.South: _south =  animation; break;
+            case IsometricDirection.SouthWest: _southWest = animation; break;
+            case IsometricDirection.West: _west = animation; break;
+            case IsometricDirection.NorthWest: _northWest = animation; break;
         }
     }
 }

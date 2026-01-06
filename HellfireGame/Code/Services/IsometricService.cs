@@ -11,16 +11,17 @@ namespace HellfireGame.Code.Services;
 public static class IsometricService
 {
   
+  // as they appear in the spriteSheet
   private static IsometricDirection[] _animationSetOrder =
   [
-    IsometricDirection.North,
-    IsometricDirection.NorthEast,
-    IsometricDirection.East,
-    IsometricDirection.SouthEast,
-    IsometricDirection.South,
-    IsometricDirection.SouthWest,
+    IsometricDirection.NorthWest,
     IsometricDirection.West,
-    IsometricDirection.NorthWest
+    IsometricDirection.SouthWest,
+    IsometricDirection.South,
+    IsometricDirection.SouthEast,
+    IsometricDirection.East,
+    IsometricDirection.NorthEast,
+    IsometricDirection.North
   ];
   
   private static NezContentManager _content;
