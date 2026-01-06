@@ -1,4 +1,5 @@
-﻿using HellfireGame.Scenes;
+﻿using HellfireGame.Code.Services;
+using HellfireGame.Scenes;
 using Microsoft.Xna.Framework;
 using Nez;
 using Nez.ImGuiTools;
@@ -14,8 +15,15 @@ public class Game : Core
     
     protected override void Initialize()
     {
+        //
+        
+        IsometricService.Initialize(Content);
+        
+        //
+        
         base.Initialize();
-        Window.Position = new Point(-1450, 320);
+        
+        //Window.Position = new Point(-1450, 320);
         
         var imGuiManager = new ImGuiManager();
         imGuiManager.ShowSeperateGameWindow = false;
