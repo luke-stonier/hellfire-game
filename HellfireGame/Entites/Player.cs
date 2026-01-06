@@ -1,20 +1,13 @@
-using System.Collections.Generic;
-using HellfireGame.Entities;
+using HellfireGame.Code.Characters;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Nez;
 using Nez.Sprites;
-using Nez.Textures;
-using Scene = Nez.Scene;
 
-namespace HellfireGame.Scenes;
+namespace HellfireGame.Entities;
 
-public class TestScene : Scene
+public class Player : Entity
 {
-    public override void Initialize()
-    {
-        base.Initialize();
-        ClearColor = Color.Black;
-
+    /*
         // var entity = CreateEntity("character-prototype");
         // entity.Transform.Position = new Vector2(640, 360);
         // entity.Transform.Scale = new Vector2(2f);
@@ -36,7 +29,40 @@ public class TestScene : Scene
         // var animator = entity.AddComponent(new SpriteAnimator());
         // animator.AddAnimation("idle", animation);
         // animator.Play("idle");
+     */
+    
+    private SpriteAnimator _animator;
+    private IsometricMovementController _isometricMovementController;
+    
+    public Player(Vector2 position, Vector2 scale, float rotation)
+    {
+        Transform.Position = position;
+        Transform.Scale = scale;
+        Transform.Rotation = rotation;
         
-        var player = new Player(new Vector2(640, 360), new Vector2(2), 0);
+        CreateComponents();
+        LoadAnimations();
+        AttachComponents();
+
+        Start();
+    }
+
+    private void LoadAnimations() {}
+
+    private void CreateComponents()
+    {
+        _animator = new SpriteAnimator();
+        _isometricMovementController = new IsometricMovementController(_animator);
+    }
+
+    private void AttachComponents()
+    {
+        Components.Add(_animator);
+        Components.Add(_isometricMovementController);
+    }
+
+    private void Start()
+    {
+        
     }
 }
