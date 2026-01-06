@@ -1,3 +1,4 @@
+using System;
 using HellfireGame.Code.Constants;
 using HellfireGame.Entities;
 using Microsoft.Xna.Framework;

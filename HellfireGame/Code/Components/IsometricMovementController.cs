@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
 
-namespace HellfireGame.Code.Characters;
+namespace HellfireGame.Code.Components;
 
 public class IsometricMovementController : Component
 {

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using HellfireGame.Code.Characters;
+using HellfireGame.Code.Components;
 using HellfireGame.Code.Constants;
 using HellfireGame.Code.Misc;
 using HellfireGame.Code.Services;
@@ -37,10 +37,18 @@ public class Player : Entity
         int cellHeight = 64,
         int frameCount = 12)
     {
-        _isometricAnimations.Add(animationName, 
-            IsometricService.LoadAnimationsToAnimationSet(movementSpeed, framesPerSecond, path, cellWidth, cellHeight, frameCount));
+        _isometricAnimations.Add(
+            animationName, 
+            IsometricService.LoadAnimationsToAnimationSet(
+                movementSpeed,
+                framesPerSecond,
+                path,
+                cellWidth,
+                cellHeight,
+                frameCount)
+            );
         
-        Console.WriteLine($"[PLAYER] Added Animation {animationName} {path}");
+        Console.WriteLine($"[PLAYER] {Name} Added Animation {animationName} {path}");
     }
 
     private void CreateComponents()
