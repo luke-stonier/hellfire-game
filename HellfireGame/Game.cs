@@ -23,7 +23,7 @@ public class Game : Core
         
         base.Initialize();
         
-        Window.Position = new Point(-1450, 320);
+        // Window.Position = new Point(-1450, 320);
         
         var imGuiManager = new ImGuiManager();
         imGuiManager.ShowSeperateGameWindow = false;

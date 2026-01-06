@@ -1,4 +1,5 @@
 using HellfireGame.Code.Characters;
+using HellfireGame.Code.Services;
 using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Sprites;
@@ -36,6 +37,7 @@ public class Player : Entity
     
     public Player(Vector2 position, Vector2 scale, float rotation)
     {
+        Name = "Player";
         Transform.Position = position;
         Transform.Scale = scale;
         Transform.Rotation = rotation;
@@ -47,7 +49,10 @@ public class Player : Entity
         Start();
     }
 
-    private void LoadAnimations() {}
+    public void LoadAnimations()
+    {
+        var idleAnimationSet = IsometricService.LoadAnimationsToAnimationSet(0, 12, "Assets/Character/character-prototype/idle", 64, 64, 8);
+    }
 
     private void CreateComponents()
     {

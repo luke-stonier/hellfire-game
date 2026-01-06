@@ -38,5 +38,6 @@ public class TestScene : Scene
         // animator.Play("idle");
         
         var player = new Player(new Vector2(640, 360), new Vector2(2), 0);
+        AddEntity(player);
     }
 }
