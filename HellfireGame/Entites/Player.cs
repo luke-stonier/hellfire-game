@@ -12,6 +12,7 @@ namespace HellfireGame.Entities;
 
 public class Player : Entity
 {
+    private InputController _inputController;
     private SpriteAnimator _animator;
     private IsometricMovementController _isometricMovementController;
     private Dictionary<string, IsometricAnimationSet> _isometricAnimations = new Dictionary<string, IsometricAnimationSet>();
@@ -53,12 +54,14 @@ public class Player : Entity
 
     private void CreateComponents()
     {
+        _inputController = new InputController();
         _animator = new SpriteAnimator();
         _isometricMovementController = new IsometricMovementController(_animator);
     }
 
     private void AttachComponents()
     {
+        AddComponent(_inputController);
         AddComponent(_animator);
         AddComponent(_isometricMovementController);
     }
