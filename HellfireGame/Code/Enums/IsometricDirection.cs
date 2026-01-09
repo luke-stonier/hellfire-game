@@ -15,10 +15,10 @@ public enum IsometricDirection
 
 public static class Vector2Extensions
 {
+    // convert a vector to an enum value
     public static IsometricDirection ToIsometricDirection(this Vector2 v)
     {
-        if (v == Vector2.Zero)
-            throw new ArgumentException("Vector must be non-zero");
+        if (v == Vector2.Zero) return IsometricDirection.North;
 
         v.Normalize();
 
@@ -53,5 +53,20 @@ public static class Vector2Extensions
             7 => IsometricDirection.SouthEast,
             _ => IsometricDirection.North
         };
+    }
+}
+
+public static class IsometricDirectionExtensions
+{
+    // ... tostring
+    public static string ToDirectionName(this IsometricDirection direction)
+    {
+        return direction.ToString().ToLowerInvariant();
+    }
+
+    // angled directions are odd number enum values - this is to determine if we need to reduce move speed based on angular direction
+    public static bool IsAngledDirection(this IsometricDirection direction)
+    {
+        return (int)direction % 2 != 0;
     }
 }

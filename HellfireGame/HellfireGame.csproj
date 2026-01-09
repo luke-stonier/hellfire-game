@@ -37,6 +37,9 @@
       <Link>Content\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Code\Debug\" />
+  </ItemGroup>
   <Target Name="BuildContent" BeforeTargets="Build">
     <Exec Command="node ../Scripts/build-content.mjs" />
   </Target>

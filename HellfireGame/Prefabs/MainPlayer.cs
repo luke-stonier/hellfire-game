@@ -9,6 +9,8 @@ public class MainPlayer : Player
     {
         ConfigureAnimations();
 
+        Awake();
+
         Start();
         Transform.Position = new Vector2(360, 420);
         Transform.Scale = new Vector2(2f);
@@ -16,8 +18,8 @@ public class MainPlayer : Player
 
     private void ConfigureAnimations()
     {
-        AddAnimation(AnimationNames.IDLE,"Assets/Character/character-prototype/idle");
-        AddAnimation(AnimationNames.WALK,"Assets/Character/character-prototype/walk");
-        AddAnimation(AnimationNames.RUN,"Assets/Character/character-prototype/run");
+        AddAnimation(AnimationName.IDLE,"Assets/Character/character-prototype/idle");
+        AddAnimation(AnimationName.WALK,"Assets/Character/character-prototype/walk", 8, 125);
+        AddAnimation(AnimationName.RUN,"Assets/Character/character-prototype/run", 8, 175);
     }
 }

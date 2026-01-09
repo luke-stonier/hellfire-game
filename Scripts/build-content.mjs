@@ -81,4 +81,4 @@ fs.mkdirSync(path.join(contentDir, ...intermediateDir.split("/")), { recursive: 
 
 execSync(`mgcb "${mgcbPath}" /rebuild`, { stdio: "inherit" });
 
-await sleep(2000);
+await sleep(750);

@@ -1,7 +1,6 @@
-using HellfireGame.Code.Interfaces;
+using HellfireGame.Code.Constants;
 using HellfireGame.Code.Misc;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
 
@@ -10,16 +9,27 @@ namespace HellfireGame.Code.Components;
 public class IsometricMovementController : Component, IUpdatable
 {
     private MoveIntent _intent;
+    private readonly SpriteAnimator _spriteAnimator;
+    private LayeredIsometricAnimationSet _isometricAnimationSet;
     
-    // required components
-    private SpriteAnimator _spriteAnimator;
-    //
-    private IsometricDirection _lastDirection;
-    private IsometricAnimationSet _animationSet;
+    private string _lastAnimationName;
+    private IsometricDirection _lastDirection = IsometricDirection.South;
 
     public IsometricMovementController(SpriteAnimator spriteAnimator)
     {
         _spriteAnimator =  spriteAnimator;
+    }
+    
+    public IsometricMovementController(SpriteAnimator spriteAnimator, LayeredIsometricAnimationSet isometricAnimationSet)
+    {
+        _spriteAnimator =  spriteAnimator;
+        _isometricAnimationSet = isometricAnimationSet;
+    }
+
+    public IsometricMovementController AddAnimationSet(LayeredIsometricAnimationSet animationSet)
+    {
+        _isometricAnimationSet = animationSet;
+        return this;
     }
     
     public override void OnAddedToEntity()
@@ -27,15 +37,26 @@ public class IsometricMovementController : Component, IUpdatable
 
     void IUpdatable.Update()
     {
-        Move(_intent.Direction, MoveType.Walking);
+        if (_intent == null) return;
+        
+        // update last direction (facing) if we are moving and it's not in the same direction as last frame
+        var direction = _intent.Direction.ToIsometricDirection();
+        if (_intent.Direction != Vector2.Zero && _lastDirection != direction) _lastDirection = direction;
+
+        var animation = _isometricAnimationSet.GetAnimationSet(_intent.AnimationToPlay)?.GetAnimation(_lastDirection);
+        if (animation == null) return;
+        if (_lastAnimationName != animation.AnimationName) // update animation if it's not the same as last played
+        {
+            _lastAnimationName = animation.AnimationName;
+            _spriteAnimator.Play(animation.AnimationName);
+        }
+
+        Move(_intent.Direction, animation.MovementSpeed);
     }
     
-    private void Move(Vector2 direction, MoveType moveType)
+    private void Move(Vector2 direction, float speed)
     {
         if (direction == Vector2.Zero) return;
-        _lastDirection = direction.ToIsometricDirection();
-        // _spriteAnimator.Play(_lastDirection.ToString());
-        var moveSpeed = _animationSet?.MovementSpeed ?? 100;
-        Entity.Position += direction * Time.DeltaTime * moveSpeed;
+        Entity.Position += direction * Time.DeltaTime * speed;
     }
 }

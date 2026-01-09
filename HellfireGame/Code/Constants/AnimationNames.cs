@@ -1,8 +1,17 @@
 namespace HellfireGame.Code.Constants;
 
-public static class AnimationNames
+public enum AnimationName
 {
-    public const string IDLE = "idle";
-    public const string WALK = "walk";
-    public const string RUN = "run";
+    IDLE,
+    WALK,
+    RUN,
+    CROUCH
+}
+
+public static class AnimationNameExtensions
+{
+    public static string ToAnimationName(this AnimationName animationName)
+    {
+        return animationName.ToString().ToLowerInvariant();
+    }
 }

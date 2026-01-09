@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using HellfireGame.Code.Constants;
 using HellfireGame.Code.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -30,9 +31,9 @@ public static class IsometricService
     _content = content;
   }
   
-  public static IsometricAnimationSet LoadAnimationsToAnimationSet(float movementSpeed, int framesPerSecond, string path, int cellWidth, int cellHeight, int frameCount)
+  public static IsometricAnimationSet LoadAnimationsToAnimationSet(AnimationName animationName, float movementSpeed, int framesPerSecond, string path, int cellWidth, int cellHeight, int frameCount)
   {
-    var isometricAnimationSet = new IsometricAnimationSet(movementSpeed, framesPerSecond);
+    var isometricAnimationSet = new IsometricAnimationSet(animationName, movementSpeed, framesPerSecond);
     var spritesheet = _content.Load<Texture2D>(path);
 
     var index = 0;
