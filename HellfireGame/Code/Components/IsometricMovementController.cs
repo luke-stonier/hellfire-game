@@ -1,28 +1,30 @@
+using System;
 using HellfireGame.Code.Constants;
+using HellfireGame.Code.Intents;
 using HellfireGame.Code.Misc;
 using Microsoft.Xna.Framework;
 using Nez;
-using Nez.Sprites;
 
 namespace HellfireGame.Code.Components;
 
 public class IsometricMovementController : Component, IUpdatable
 {
+    // intent
     private MoveIntent _intent;
-    private readonly SpriteAnimator _spriteAnimator;
-    private LayeredIsometricAnimationSet _isometricAnimationSet;
+    private ActionIntent _actionIntent;
     
-    private string _lastAnimationName;
+    private readonly AnimationController _animationController;
+    private LayeredIsometricAnimationSet _isometricAnimationSet;
     private IsometricDirection _lastDirection = IsometricDirection.South;
 
-    public IsometricMovementController(SpriteAnimator spriteAnimator)
+    public IsometricMovementController(AnimationController animationController)
     {
-        _spriteAnimator =  spriteAnimator;
+        _animationController = animationController;
     }
     
-    public IsometricMovementController(SpriteAnimator spriteAnimator, LayeredIsometricAnimationSet isometricAnimationSet)
+    public IsometricMovementController(AnimationController animationController, LayeredIsometricAnimationSet isometricAnimationSet)
     {
-        _spriteAnimator =  spriteAnimator;
+        _animationController = animationController;
         _isometricAnimationSet = isometricAnimationSet;
     }
 
@@ -31,25 +33,26 @@ public class IsometricMovementController : Component, IUpdatable
         _isometricAnimationSet = animationSet;
         return this;
     }
-    
+
     public override void OnAddedToEntity()
-        => _intent = Entity.GetComponent<MoveIntent>();
+    {
+        _intent = Entity.GetComponent<MoveIntent>();
+        _actionIntent = Entity.GetComponent<ActionIntent>();
+    }
 
     void IUpdatable.Update()
     {
-        if (_intent == null) return;
+        if (_intent == null) throw new Exception("[IsometricMovementController] No MoveIntent component attached entity");
         
-        // update last direction (facing) if we are moving and it's not in the same direction as last frame
+        // update last direction (facing) if we are moving, and it's not in the same direction as last frame
         var direction = _intent.Direction.ToIsometricDirection();
         if (_intent.Direction != Vector2.Zero && _lastDirection != direction) _lastDirection = direction;
 
         var animation = _isometricAnimationSet.GetAnimationSet(_intent.AnimationToPlay)?.GetAnimation(_lastDirection);
-        if (animation == null) return;
-        if (_lastAnimationName != animation.AnimationName) // update animation if it's not the same as last played
-        {
-            _lastAnimationName = animation.AnimationName;
-            _spriteAnimator.Play(animation.AnimationName);
-        }
+        if (animation == null) return; // gets the speed
+        _animationController.PlayAnimation(_intent.AnimationToPlay, _lastDirection);
+        
+        if (_actionIntent.Jumping) _animationController.PlayAnimation(AnimationName.RUN, IsometricDirection.South);
 
         Move(_intent.Direction, animation.MovementSpeed);
     }

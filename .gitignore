@@ -13,3 +13,8 @@ obj/
 
 # Logs
 *.log
+
+# for scripting
+node_modules/
+**/node_modules/
+**/node_modules/*

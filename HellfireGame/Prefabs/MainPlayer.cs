@@ -1,9 +1,8 @@
-using System;
 using HellfireGame.Code.Constants;
 using HellfireGame.Entities;
 using Microsoft.Xna.Framework;
 
-public class MainPlayer : Player
+public class MainPlayer : Character
 {
     public MainPlayer()
     {

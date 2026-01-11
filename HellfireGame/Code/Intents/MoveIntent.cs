@@ -1,9 +1,8 @@
 using HellfireGame.Code.Constants;
-using HellfireGame.Code.Misc;
 using Microsoft.Xna.Framework;
 using Nez;
 
-namespace HellfireGame.Code.Components;
+namespace HellfireGame.Code.Intents;
 
 public class MoveIntent : Component
 {

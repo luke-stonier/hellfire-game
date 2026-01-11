@@ -11,16 +11,18 @@ using Nez.Sprites;
 
 namespace HellfireGame.Entities;
 
-public class Player : Entity
+public class Character : Entity
 {
+    // components
     private InputController _inputController;
     private SpriteAnimator _animator;
     private IsometricMovementController _isometricMovementController;
-    private readonly  LayeredIsometricAnimationSet _isometricAnimationSet = new LayeredIsometricAnimationSet();
+    private AnimationController _animationController;
     
-    private bool hasInitialized = false;
+    private readonly  LayeredIsometricAnimationSet _isometricAnimationSet = new();
+    private bool hasInitialized;
     
-    public Player(Vector2 position, Vector2 scale, float rotation)
+    public Character(Vector2 position, Vector2 scale, float rotation)
     {
         Name = "Player";
         Transform.Position = position;
@@ -44,7 +46,7 @@ public class Player : Entity
         CreateComponents();
     }
 
-    protected Player() : this(Vector2.Zero, Vector2.One, 0f) {}
+    protected Character() : this(Vector2.Zero, Vector2.One, 0f) {}
 
     protected void AddAnimation(
         AnimationName animationName,
@@ -81,7 +83,8 @@ public class Player : Entity
     {
         _inputController = new InputController();
         _animator = new SpriteAnimator();
-        _isometricMovementController = new IsometricMovementController(_animator);
+        _animationController = new AnimationController(_animator);
+        _isometricMovementController = new IsometricMovementController(_animationController);
     }
 
     private void DetachComponents()

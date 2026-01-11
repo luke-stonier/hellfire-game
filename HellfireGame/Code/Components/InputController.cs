@@ -1,5 +1,6 @@
 using System;
 using HellfireGame.Code.Constants;
+using HellfireGame.Code.Intents;
 using Nez;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -8,7 +9,11 @@ namespace HellfireGame.Code.Components;
 
 public class InputController : Component, IUpdatable
 {
-    private MoveIntent _intent;
+    // externals
+    private MoveIntent _moveIntent;
+    private ActionIntent _actionIntent;
+    
+    // movement axis
     private VirtualAxis _moveX;
     private VirtualAxis _moveY;
     
@@ -16,9 +21,15 @@ public class InputController : Component, IUpdatable
     private VirtualButton _runningInput;
     private VirtualButton _crouchingInput;
     
+    // actions 
+    private VirtualButton _jumping;
+
     public override void OnAddedToEntity()
-        => _intent = Entity.GetOrCreateComponent<MoveIntent>();
-    
+    {
+        _moveIntent = Entity.GetOrCreateComponent<MoveIntent>();
+        _actionIntent = Entity.GetOrCreateComponent<ActionIntent>();
+    }
+
     public InputController()
     {
         Start();
@@ -36,17 +47,19 @@ public class InputController : Component, IUpdatable
         if (direction.LengthSquared() > 1f)
             direction.Normalize();
         
-        _intent.Direction = direction;
-        if (_intent.Direction == Vector2.Zero)
+        _moveIntent.Direction = direction;
+        if (_moveIntent.Direction == Vector2.Zero)
         {
-            _intent.AnimationToPlay = AnimationName.IDLE;
+            _moveIntent.AnimationToPlay = AnimationName.IDLE;
         }
         else
         {
             // set running (priority) -> crouching, default to walk
-            _intent.AnimationToPlay = _runningInput.IsDown ? AnimationName.RUN :
+            _moveIntent.AnimationToPlay = _runningInput.IsDown ? AnimationName.RUN :
                 _crouchingInput.IsDown ? AnimationName.CROUCH : AnimationName.WALK;
         }
+
+        _actionIntent.Jumping = _jumping.IsDown;
     }
 
     private void InitControllerInput()
@@ -80,5 +93,10 @@ public class InputController : Component, IUpdatable
         _crouchingInput.AddKeyboardKey(Keys.LeftControl)
             .AddKeyboardKey(Keys.RightControl)
             .AddGamePadButton(0, Buttons.RightStick);
+        
+        // Actions
+        _jumping = new VirtualButton();
+        _jumping.AddKeyboardKey(Keys.Space)
+            .AddGamePadButton(0, Buttons.A);
     }
 }

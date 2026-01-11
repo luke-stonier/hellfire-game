@@ -14,4 +14,9 @@ public static class AnimationNameExtensions
     {
         return animationName.ToString().ToLowerInvariant();
     }
+
+    public static string ToAnimation(this AnimationName animationName, IsometricDirection isometricDirection)
+    {
+        return animationName.ToAnimationName() + "_" + isometricDirection.ToDirectionName();
+    }
 }
