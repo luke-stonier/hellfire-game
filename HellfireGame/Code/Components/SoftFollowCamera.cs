@@ -1,6 +1,7 @@
 ﻿using System;
 using ImGuiNET;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Nez;
 
 namespace HellfireGame.Code.Components;
@@ -30,6 +31,13 @@ public class SoftFollowCamera : Component, IUpdatable
 
     void IUpdatable.Update()
     {
+        if (Input.IsKeyPressed(Keys.F9))
+        {
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+        }
+        
         var speed = _followSpeed;
         var distance = Vector2.Distance(Transform.Position, _target.Position);
         if (distance < _minDistance) return; // in bounds

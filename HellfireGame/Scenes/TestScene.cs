@@ -1,4 +1,5 @@
 using HellfireGame.Code.Components;
+using HellfireGame.Code.Map;
 using Microsoft.Xna.Framework;
 using Nez;
 using Scene = Nez.Scene;
@@ -10,7 +11,10 @@ public class TestScene : Scene
     public override void Initialize()
     {
         base.Initialize();
-        ClearColor = Color.Black;
+        ClearColor = Color.WhiteSmoke;
+
+        var mapRenderer = new MapRenderer(this);
+        
         
         var player = new MainPlayer();
         AddEntity(player);

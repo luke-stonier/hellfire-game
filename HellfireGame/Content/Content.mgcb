@@ -30,3 +30,10 @@
 /processorParam:ColorKeyEnabled=False
 /build:../../Assets/Character/character-prototype/walk.png
 #end ../../Assets/Character/character-prototype/walk.png
+
+#begin ../../Assets/Demo/isometric_map.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyEnabled=False
+/build:../../Assets/Demo/isometric_map.png
+#end ../../Assets/Demo/isometric_map.png

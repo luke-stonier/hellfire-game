@@ -13,7 +13,7 @@ public static class IsometricService
 {
   
   // as they appear in the spriteSheet
-  private static IsometricDirection[] _animationSetOrder =
+  private static readonly IsometricDirection[] _animationSetOrder =
   [
     IsometricDirection.NorthWest,
     IsometricDirection.West,
@@ -45,5 +45,10 @@ public static class IsometricService
     }
     
     return isometricAnimationSet;
-  }   
+  }
+
+  public static Texture2D Load(string path)
+  {
+    return _content.Load<Texture2D>(path);
+  }
 }
